@@ -1,0 +1,5 @@
+---
+- name: "restart domain_exporter"
+  service:
+    name: "domain_exporter"
+    state: "restarted"
