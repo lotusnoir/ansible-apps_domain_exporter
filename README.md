@@ -10,8 +10,11 @@ Deploy [domain_exporter](https://github.com/caarlos0/domain_exporter/) to expose
 
 | Name           | Default Value | Description                        |
 | -------------- | ------------- | -----------------------------------|
-| `domain_exporter_version` | 1.7.2 | domain_exporter version |
+| `domain_exporter_version` | 1.8.0 | domain_exporter version |
 | `domain_exporter_port` | 9116 | port to expose prometheus metrics |
+| `domain_exporter_temp_dir` | /tmp | temporary directory to uncompress package |
+| `domain_exporter_install_dir` | /usr/local/bin | directory to install binary |
+| `domain_exporter_force_install` | false | force install variable |
 
 ## Examples
 
@@ -29,4 +32,4 @@ Deploy [domain_exporter](https://github.com/caarlos0/domain_exporter/) to expose
 
 ## License
 
-This project is licensed under MIT License. See [LICENSE](/LICENSE) for more details.
+This project is licensed under Apache License. See [LICENSE](/LICENSE) for more details.

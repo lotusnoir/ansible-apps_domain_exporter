@@ -8,7 +8,7 @@ StartLimitInterval=0
 [Service]
 Type=simple
 Restart=always
-ExecStart=/usr/local/bin/domain_exporter -b ":{{ domain_exporter_port }}"
+ExecStart={{ domain_exporter_install_dir }}/domain-exporter -b ":{{ domain_exporter_port }}"
 ExecReload=/bin/kill -HUP $MAINPID
 SyslogIdentifier=domain_exporter
 RestartSec=1
