@@ -17,8 +17,8 @@
     - name: "Download domain_exporter..."
       get_url:
         url: '{{ domain_exporter_tgz_url }}'
-        dest: '/{{ domain_exporter_temp_dir }}/{{ domain_exporter_tgz }}'
-        timeout: 60
+        dest: '{{ domain_exporter_temp_dir }}/{{ domain_exporter_tgz }}'
+        timeout: '60'
         mode: '0644'
 
     - name: "Ensure install dir exists"
@@ -52,8 +52,8 @@
 - name: "Create symtemd for domain_exporter"
   template:
     src: 'domain_exporter.service.j2'
-    dest: '/lib/systemd/system/domain_exporter.service'
-    mode: '0644'
+    dest: '/etc/systemd/system/domain_exporter.service'
+    mode: '0640'
   notify: "restart domain_exporter"
 
 - name: "Start domain_exporter.service"
