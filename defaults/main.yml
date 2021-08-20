@@ -1,11 +1,11 @@
 ---
 # Binary install
-domain_exporter_version:        "1.8.0"
-domain_exporter_tgz:            "domain_exporter_linux_amd64.tar.gz"
-domain_exporter_tgz_url:        "https://github.com/caarlos0/domain_exporter/releases/download/v{{ domain_exporter_version }}/domain_exporter_linux_amd64.tar.gz"
-domain_exporter_temp_dir:       "/tmp"
-domain_exporter_install_dir:    "/usr/local/bin"
-domain_exporter_force_install:  false
+domain_exporter_version: "1.8.0"
+domain_exporter_tgz: "domain_exporter_linux_amd64.tar.gz"
+domain_exporter_tgz_url: "https://github.com/caarlos0/domain_exporter/releases/download/v{{ domain_exporter_version }}/domain_exporter_linux_amd64.tar.gz"
+domain_exporter_temp_dir: "/tmp"
+domain_exporter_install_dir: "/usr/local/bin"
+domain_exporter_force_install: false
 
 # Systemd options
-domain_exporter_port:           "9116"
+domain_exporter_port: "9116"
