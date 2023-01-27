@@ -1,21 +1,27 @@
 ---
 - name: "Check for domain_exporter binary"
-  stat:
+  ansible.builtin.stat:
     path: '{{ domain_exporter_install_dir }}/domain-exporter'
   changed_when: false
   register: domain_exporter_install
 
-- when: not domain_exporter_install.stat.exists or domain_exporter_force_install|bool
+- name: "Install tasks"
+  when: not domain_exporter_install.stat.exists or domain_exporter_force_install|bool
   block:
+    - name: "Install requierements"
+      ansible.builtin.package:
+        name: ["unzip", "tar"]
+        state: present
+
     - name: "Download domain_exporter..."
-      get_url:
+      ansible.builtin.get_url:
         url: '{{ domain_exporter_tgz_url }}'
         dest: '{{ domain_exporter_temp_dir }}/{{ domain_exporter_tgz }}'
         timeout: '60'
         mode: '0644'
 
     - name: "Ensure install dir exists"
-      file:
+      ansible.builtin.file:
         path: '{{ item }}'
         state: directory
         mode: '0755'
@@ -24,33 +30,33 @@
         - '{{ domain_exporter_temp_dir }}/domain_exporter'
 
     - name: "Unarchive domain_exporter..."
-      unarchive:
+      ansible.builtin.unarchive:
         src: '{{ domain_exporter_temp_dir }}/{{ domain_exporter_tgz }}'
         dest: '{{ domain_exporter_temp_dir }}/domain_exporter'
         remote_src: true
         mode: '0644'
 
     - name: "Copy domain_exporter binary..."
-      copy:
+      ansible.builtin.copy:
         src: '{{ domain_exporter_temp_dir }}/domain_exporter/domain_exporter'
         dest: '{{ domain_exporter_install_dir }}/domain-exporter'
         remote_src: true
         mode: '0755'
 
     - name: "Remove temporary directory"
-      file:
+      ansible.builtin.file:
         path: '{{ domain_exporter_temp_dir }}/domain_exporter'
         state: absent
 
 - name: "Create symtemd for domain_exporter"
-  template:
+  ansible.builtin.template:
     src: 'domain_exporter.service.j2'
     dest: '/etc/systemd/system/domain_exporter.service'
     mode: '0640'
   notify: "restart domain_exporter"
 
 - name: "Start domain_exporter.service"
-  service:
+  ansible.builtin.service:
     name: domain_exporter
     state: started
     enabled: true

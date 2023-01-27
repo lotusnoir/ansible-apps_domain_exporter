@@ -1,5 +1,5 @@
 ---
 - name: "restart domain_exporter"
-  service:
+  ansible.builtin.service:
     name: "domain_exporter"
     state: "restarted"
