@@ -22,6 +22,7 @@
 ## Description
 
 Deploy [domain_exporter](https://github.com/caarlos0/domain_exporter/) to expose domain metrics to prometheus.
+
 ## Requirements
 
 none
